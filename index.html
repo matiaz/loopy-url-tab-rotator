@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loopy URL Tab Rotator</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1a1a1a;
+      background: #f8f9fa;
+      line-height: 1.6;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #4A90D9, #357ABD);
+      color: #fff;
+      text-align: center;
+      padding: 60px 20px 48px;
+    }
+
+    .hero img {
+      width: 120px;
+      height: 120px;
+      border-radius: 24px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 560px;
+      margin: 0 auto;
+      opacity: 0.92;
+    }
+
+    .content {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+    }
+
+    .screenshots {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .screenshots img {
+      border-radius: 10px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+      max-width: 680px;
+      width: 100%;
+      height: auto;
+    }
+
+    h2 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #1a1a1a;
+    }
+
+    .modes {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+
+    .mode-card {
+      flex: 1;
+      min-width: 260px;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .mode-card h3 {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #4A90D9;
+    }
+
+    .mode-card p {
+      font-size: 14px;
+      color: #444;
+    }
+
+    .features {
+      list-style: none;
+      margin-bottom: 32px;
+    }
+
+    .features li {
+      padding: 6px 0;
+      font-size: 15px;
+      color: #333;
+      padding-left: 24px;
+      position: relative;
+    }
+
+    .features li::before {
+      content: "\2713";
+      position: absolute;
+      left: 0;
+      color: #4A90D9;
+      font-weight: 700;
+    }
+
+    .privacy {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 32px;
+    }
+
+    .privacy h2 { margin-bottom: 8px; }
+
+    .privacy p {
+      font-size: 14px;
+      color: #444;
+    }
+
+    .badges {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 32px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #444;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px 20px;
+      font-size: 13px;
+      color: #999;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    @media (max-width: 600px) {
+      .hero { padding: 40px 16px 32px; }
+      .hero h1 { font-size: 26px; }
+      .hero p { font-size: 16px; }
+      .content { padding: 28px 16px 40px; }
+      .screenshots img { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <img src="images/App-Logo.png" alt="Loopy URL Tab Rotator icon">
+    <h1>Loopy URL Tab Rotator</h1>
+    <p>Automatically rotate through URLs or open browser tabs on a customizable timer. Perfect for dashboards, kiosks, and presentations.</p>
+  </div>
+
+  <div class="content">
+    <div class="screenshots">
+      <img src="images/Screenshots1.png" alt="Single Tab rotation mode">
+      <img src="images/Screenshots2.png" alt="Open Tabs rotation mode">
+    </div>
+
+    <h2>Two Rotation Modes</h2>
+    <div class="modes">
+      <div class="mode-card">
+        <h3>Single Tab Rotation</h3>
+        <p>Add a list of URLs and the extension loads each one in the current tab on a timer. Drag and drop to reorder your list.</p>
+      </div>
+      <div class="mode-card">
+        <h3>Open Tabs Rotation</h3>
+        <p>Cycle through all open tabs in the current window automatically. Optionally reload each tab when it becomes active.</p>
+      </div>
+    </div>
+
+    <h2>Features</h2>
+    <ul class="features">
+      <li>Preset intervals: 5s, 10s, 15s, 30s, 1min, 2min, 5min, 10min</li>
+      <li>Custom interval: set any duration in seconds</li>
+      <li>Loop indefinitely or a specific number of times</li>
+      <li>Reload pages automatically on tab switch</li>
+      <li>Drag-and-drop URL reordering</li>
+      <li>Light and dark theme</li>
+      <li>All settings saved automatically</li>
+    </ul>
+
+    <div class="privacy">
+      <h2>Privacy</h2>
+      <p>Loopy URL Tab Rotator does not collect, transmit, or sell any user data. All settings are stored locally on your device using the browser's built-in storage API. No analytics, no tracking, no remote servers.</p>
+    </div>
+
+    <h2>Available On</h2>
+    <div class="badges">
+      <span class="badge">Chrome</span>
+      <span class="badge">Firefox</span>
+      <span class="badge">Edge</span>
+      <span class="badge">Opera</span>
+      <span class="badge">Safari</span>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2026 Danis Matiaz
+  </footer>
+</body>
+</html>
