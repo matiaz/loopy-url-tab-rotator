@@ -33,7 +33,6 @@ Edge can install the Chrome Web Store version, or you can [build it from source]
 | `storage` | Save your settings and the rotation progress on your device. |
 | `alarms` | Run a watchdog that restarts the rotation if the browser suspends the background script. |
 | `offscreen` (Chromium) | Keep an accurate timer running in an offscreen document. |
-| `scripting` (Firefox) | Try to inject a small keep-alive script for the background script. |
 
 The extension requests no host permissions and cannot read page content.
 

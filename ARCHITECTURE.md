@@ -14,7 +14,7 @@ A browser extension (Chrome, Firefox, Edge, Opera, Safari) that automatically ro
 - Popup communicates with background service worker via `chrome.runtime.sendMessage`
 - **Offscreen document** (Chromium only) -- runs the rotation timer and sends a `tick` to the service worker on every interval, since service worker timers stop when the worker is suspended
 - **Watchdog alarm** -- a `rotation-watchdog` alarm every 30 seconds wakes the background script, restores a running rotation from storage and catches up a missed step
-- **Keep-alive content script** (Firefox only) -- the background script tries to inject it to hold a port open; without host permissions the injection fails, so Firefox and Safari rely on `setInterval` plus the watchdog alarm
+- **Firefox and Safari** have no offscreen document, so they run the timer with `setInterval` in the background script and rely on the watchdog alarm to resume it after the browser unloads an idle background script
 
 ## Project Structure
 
@@ -29,8 +29,6 @@ loopy-url-tab-rotator/
 │   │   ├── service-worker.js
 │   │   ├── offscreen.html        (Chromium only)
 │   │   └── offscreen.js          (Chromium only)
-│   ├── content/
-│   │   └── keep-alive.js         (Firefox only)
 │   ├── icons/
 │   │   └── icon-{16,32,48,64,96,128}.png
 │   ├── manifest.chrome.json      (Chrome, Edge, Opera, Safari)
@@ -194,8 +192,6 @@ Messages sent via `chrome.runtime.sendMessage`:
 | `{ action: "start-offscreen-timer", interval }` | Background → Offscreen | none (interval in ms) |
 | `{ action: "stop-offscreen-timer" }` | Background → Offscreen | none |
 | `{ action: "tick" }` | Offscreen → Background | none |
-
-Firefox only: `keep-alive.js` opens a `chrome.runtime.connect({ name: "keepalive" })` port to the background script.
 
 The background script ignores any message whose `sender.id` is not its own extension id, and re-validates every `start` config: only `http:`/`https:` URLs are kept and `interval` is clamped to 1-86400 seconds. The popup polls `getStatus` once a second while the status view is open.
 

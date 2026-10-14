@@ -17,7 +17,6 @@ const MANIFEST_MAP = {
 
 const ALL_TARGETS = Object.keys(MANIFEST_MAP);
 
-const FIREFOX_ONLY = ["content"];
 const OFFSCREEN_FILES = ["background/offscreen.html", "background/offscreen.js"];
 const NO_OFFSCREEN_TARGETS = ["firefox", "safari"];
 const IGNORED_FILES = [".DS_Store"];
@@ -52,7 +51,6 @@ function resolveTargets() {
 
 function shouldExclude(target, entryName, relativePath) {
   if (IGNORED_FILES.includes(entryName)) return true;
-  if (target !== "firefox" && FIREFOX_ONLY.includes(entryName)) return true;
   if (NO_OFFSCREEN_TARGETS.includes(target) && OFFSCREEN_FILES.includes(relativePath)) return true;
   return false;
 }

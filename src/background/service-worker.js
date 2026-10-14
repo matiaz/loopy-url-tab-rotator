@@ -16,8 +16,7 @@ const state = {
   targetTabId: null,
   timerId: null,
   startTime: null,
-  lastAdvanceAt: null,
-  keepAlivePort: null
+  lastAdvanceAt: null
 };
 
 let resumePromise = null;
@@ -103,11 +102,6 @@ async function resetState() {
 
   if (HAS_OFFSCREEN) {
     await stopOffscreenTimer();
-  }
-
-  if (state.keepAlivePort) {
-    try { state.keepAlivePort.disconnect(); } catch (e) {}
-    state.keepAlivePort = null;
   }
 
   await chrome.alarms.clear(WATCHDOG_ALARM);
@@ -295,22 +289,6 @@ async function stopOffscreenTimer() {
   } catch (e) {}
 }
 
-async function connectKeepAlivePort() {
-  if (HAS_OFFSCREEN || !chrome.scripting) return;
-  const tabs = await chrome.tabs.query({ lastFocusedWindow: true });
-  if (tabs.length === 0) return;
-
-  const tab = tabs.find((t) => t.url && !t.url.startsWith("about:")) || tabs[0];
-  if (!tab || !tab.id) return;
-
-  try {
-    await chrome.scripting.executeScript({
-      target: { tabId: tab.id },
-      files: ["content/keep-alive.js"]
-    });
-  } catch (e) {}
-}
-
 async function startTimer(intervalSec) {
   const intervalMs = intervalSec * 1000;
 
@@ -322,7 +300,6 @@ async function startTimer(intervalSec) {
   if (HAS_OFFSCREEN) {
     await startOffscreenTimer(intervalMs);
   } else {
-    await connectKeepAlivePort();
     state.timerId = setInterval(() => {
       advance();
     }, intervalMs);
@@ -511,20 +488,5 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
   return false;
 });
-
-if (!HAS_OFFSCREEN) {
-  chrome.runtime.onConnect.addListener((port) => {
-    if (port.name !== "keepalive" || !port.sender || port.sender.id !== chrome.runtime.id) return;
-    state.keepAlivePort = port;
-    port.onDisconnect.addListener(() => {
-      if (state.keepAlivePort === port) {
-        state.keepAlivePort = null;
-      }
-      if (state.running) {
-        connectKeepAlivePort();
-      }
-    });
-  });
-}
 
 ensureResumed();
