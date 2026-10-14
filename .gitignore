@@ -1,1 +1,8 @@
-firebase-debug.log
+node_modules/
+dist/
+packages/
+.DS_Store
+*.log
+/.atl
+/.codegraph
+/.claude

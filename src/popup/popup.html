@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Loopy URL Tab Rotator</h1>
+      <button id="theme-toggle" aria-label="Toggle theme">
+        <span class="icon-sun">&#9728;</span>
+        <span class="icon-moon">&#9790;</span>
+      </button>
+    </header>
+
+    <nav class="tabs">
+      <button class="tab active" data-tab="singleTab">Single Tab</button>
+      <button class="tab" data-tab="openTabs">Open Tabs</button>
+    </nav>
+
+    <div id="config-view">
+      <div id="singleTab-panel" class="panel active">
+        <div class="url-input-group">
+          <input type="text" id="url-input" placeholder="https://example.com">
+          <button id="url-add-btn">Add</button>
+        </div>
+        <div id="url-error" class="field-error hidden" role="alert"></div>
+        <ul id="url-list" class="url-list"></ul>
+
+        <div class="setting-group">
+          <label for="single-interval">Interval</label>
+          <select id="single-interval">
+            <option value="5">5 seconds</option>
+            <option value="10">10 seconds</option>
+            <option value="15">15 seconds</option>
+            <option value="30" selected>30 seconds</option>
+            <option value="60">1 minute</option>
+            <option value="120">2 minutes</option>
+            <option value="300">5 minutes</option>
+            <option value="600">10 minutes</option>
+            <option value="custom">Custom...</option>
+          </select>
+          <div id="single-custom-interval" class="custom-interval hidden">
+            <input type="number" id="single-custom-seconds" min="1" max="86400" placeholder="Seconds">
+            <div id="single-interval-error" class="field-error hidden" role="alert"></div>
+          </div>
+        </div>
+
+        <div class="setting-group">
+          <div class="toggle-row">
+            <label for="single-loop">Loop</label>
+            <label class="switch">
+              <input type="checkbox" id="single-loop">
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div id="single-loop-options" class="loop-options hidden">
+            <label class="radio-label">
+              <input type="radio" name="single-loop-type" value="indefinite" checked>
+              Indefinitely
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="single-loop-type" value="count">
+              Specific number
+            </label>
+            <div id="single-loop-count-wrap" class="hidden">
+              <input type="number" id="single-loop-count" min="1" value="2" placeholder="Number of loops">
+            </div>
+          </div>
+        </div>
+
+        <button id="single-start-btn" class="start-btn">Start</button>
+      </div>
+
+      <div id="openTabs-panel" class="panel">
+        <div class="setting-group">
+          <label for="tabs-interval">Interval</label>
+          <select id="tabs-interval">
+            <option value="5">5 seconds</option>
+            <option value="10">10 seconds</option>
+            <option value="15">15 seconds</option>
+            <option value="30" selected>30 seconds</option>
+            <option value="60">1 minute</option>
+            <option value="120">2 minutes</option>
+            <option value="300">5 minutes</option>
+            <option value="600">10 minutes</option>
+            <option value="custom">Custom...</option>
+          </select>
+          <div id="tabs-custom-interval" class="custom-interval hidden">
+            <input type="number" id="tabs-custom-seconds" min="1" max="86400" placeholder="Seconds">
+            <div id="tabs-interval-error" class="field-error hidden" role="alert"></div>
+          </div>
+        </div>
+
+        <div class="setting-group">
+          <div class="toggle-row">
+            <label for="tabs-loop">Loop</label>
+            <label class="switch">
+              <input type="checkbox" id="tabs-loop">
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div id="tabs-loop-options" class="loop-options hidden">
+            <label class="radio-label">
+              <input type="radio" name="tabs-loop-type" value="indefinite" checked>
+              Indefinitely
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="tabs-loop-type" value="count">
+              Specific number
+            </label>
+            <div id="tabs-loop-count-wrap" class="hidden">
+              <input type="number" id="tabs-loop-count" min="1" value="2" placeholder="Number of loops">
+            </div>
+          </div>
+        </div>
+
+        <div class="setting-group">
+          <div class="toggle-row">
+            <label for="tabs-reload">Reload page on switch</label>
+            <label class="switch">
+              <input type="checkbox" id="tabs-reload">
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <button id="tabs-start-btn" class="start-btn">Start</button>
+      </div>
+    </div>
+
+    <div id="status-view" class="hidden">
+      <div class="status-info">
+        <div class="status-mode" id="status-mode"></div>
+        <div class="status-current" id="status-current"></div>
+        <div class="status-progress" id="status-progress"></div>
+        <div class="status-loop" id="status-loop"></div>
+        <div class="status-elapsed" id="status-elapsed"></div>
+      </div>
+      <button id="stop-btn" class="stop-btn">Stop</button>
+    </div>
+
+    <footer class="app-footer">
+      <a class="source-link" href="https://github.com/matiaz/loopy-url-tab-rotator" target="_blank" rel="noopener noreferrer">Source on GitHub</a>
+      <div class="version-label" id="version-label"></div>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

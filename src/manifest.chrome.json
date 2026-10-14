@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "Loopy URL Tab Rotator",
+  "version": "1.1.0",
+  "description": "Automatically rotate through web pages or browser tabs on a timer",
+  "homepage_url": "https://github.com/matiaz/loopy-url-tab-rotator",
+  "permissions": [
+    "storage",
+    "tabs",
+    "alarms",
+    "offscreen"
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png",
+      "64": "icons/icon-64.png",
+      "96": "icons/icon-96.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background/service-worker.js"
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "64": "icons/icon-64.png",
+    "96": "icons/icon-96.png",
+    "128": "icons/icon-128.png"
+  }
+}

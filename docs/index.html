@@ -151,6 +151,28 @@
       font-size: 13px;
       font-weight: 500;
       color: #444;
+      text-decoration: none;
+    }
+
+    a.badge {
+      color: #4A90D9;
+      border-color: #4A90D9;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    a.badge:hover {
+      background: #4A90D9;
+      color: #fff;
+    }
+
+    .badge-soon {
+      color: #999;
+    }
+
+    .badge-soon small {
+      font-size: 11px;
+      font-weight: 400;
+      margin-left: 4px;
     }
 
     footer {
@@ -159,6 +181,15 @@
       font-size: 13px;
       color: #999;
       border-top: 1px solid #e0e0e0;
+    }
+
+    footer a {
+      color: #4A90D9;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
     }
 
     @media (max-width: 600px) {
@@ -213,16 +244,16 @@
 
     <h2>Available On</h2>
     <div class="badges">
-      <span class="badge">Chrome</span>
-      <span class="badge">Firefox</span>
-      <span class="badge">Edge</span>
-      <span class="badge">Opera</span>
-      <span class="badge">Safari</span>
+      <a class="badge" href="https://chromewebstore.google.com/detail/loopy-url-tab-rotator/jliigbabikjgiebnalhhmadjhdehfnmg" target="_blank" rel="noopener noreferrer">Chrome</a>
+      <a class="badge" href="https://addons.mozilla.org/en-US/firefox/addon/loopy-url-tab-rotator/" target="_blank" rel="noopener noreferrer">Firefox</a>
+      <span class="badge badge-soon">Edge <small>coming soon</small></span>
+      <span class="badge badge-soon">Opera <small>coming soon</small></span>
+      <span class="badge badge-soon">Safari <small>coming soon</small></span>
     </div>
   </div>
 
   <footer>
-    &copy; 2026 Danis Matiaz
+    &copy; 2026 Danis Matiaz &middot; <a href="https://github.com/matiaz/loopy-url-tab-rotator">Source on GitHub</a>
   </footer>
 </body>
 </html>

@@ -1,0 +1,33 @@
+{
+  "name": "loopy-url-tab-rotator",
+  "version": "1.1.0",
+  "description": "Browser extension that automatically rotates through web pages on a timer",
+  "license": "MIT",
+  "homepage": "https://matiaz.github.io/loopy-url-tab-rotator/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matiaz/loopy-url-tab-rotator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/matiaz/loopy-url-tab-rotator/issues"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "version:sync": "node scripts/version.js",
+    "build": "node scripts/build.js",
+    "build:chrome": "node scripts/build.js chrome",
+    "build:firefox": "node scripts/build.js firefox",
+    "build:edge": "node scripts/build.js edge",
+    "build:opera": "node scripts/build.js opera",
+    "build:safari": "node scripts/build.js safari",
+    "package": "node scripts/package.js",
+    "package:chrome": "node scripts/package.js chrome",
+    "package:firefox": "node scripts/package.js firefox",
+    "package:edge": "node scripts/package.js edge",
+    "package:opera": "node scripts/package.js opera",
+    "release": "npm run version:sync && npm run build && npm run package"
+  },
+  "private": true
+}
